@@ -5,11 +5,10 @@ import encora.challenger.api.mscredentialscontrol.domain.model.dto.CredentialReq
 import encora.challenger.api.mscredentialscontrol.domain.model.dto.CredentialResponse;
 import encora.challenger.api.mscredentialscontrol.domain.model.dto.TokenRequest;
 import encora.challenger.api.mscredentialscontrol.domain.model.dto.TokenResponse;
-import encora.challenger.api.mscredentialscontrol.domain.model.dto.TokenValidationRequest;
-import encora.challenger.api.mscredentialscontrol.domain.model.dto.TokenValidationResponse;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.openapitools.api.AuthApi;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
@@ -26,22 +25,21 @@ public class AuthController implements AuthApi {
   public Mono<ResponseEntity<TokenResponse>> authTokenPost(Mono<TokenRequest> tokenRequest,
       ServerWebExchange exchange) {
 
-    return tokenRequest  // Acceder al contenido del Mono usando flatMap
+    return tokenRequest
         .flatMap(request ->
             tokenManagerService.generateTokenString(
                 request.getClusterKey(),
                 request.getUser(),
-                request.getPassword())  // Generar el token usando datos del TokenRequest
+                request.getPassword())
         )
         .map(token -> {
-          // Crear y devolver TokenResponse
           TokenResponse tokenResponse = new TokenResponse();
           tokenResponse.setToken(token);
           return ResponseEntity.ok(tokenResponse);
         })
         .switchIfEmpty(Mono.just(
             ResponseEntity.badRequest().build()
-        ));  // Manejo de error para credenciales incorrectas
+        ));
   }
 
   @Override
@@ -53,7 +51,7 @@ public class AuthController implements AuthApi {
         .map(credential -> {
           CredentialResponse response = new CredentialResponse();
           response.setMessage("Credential registered successfully");
-          return ResponseEntity.status(201)
+          return ResponseEntity.status(HttpStatus.CREATED)
               .body(response);
         })
         .switchIfEmpty(Mono.just(ResponseEntity.badRequest().build()
@@ -62,9 +60,4 @@ public class AuthController implements AuthApi {
         ));
   }
 
-  @Override
-  public Mono<ResponseEntity<TokenValidationResponse>> authValidatePost(
-      Mono<TokenValidationRequest> tokenValidationRequest, ServerWebExchange exchange) {
-    return null;
-  }
 }

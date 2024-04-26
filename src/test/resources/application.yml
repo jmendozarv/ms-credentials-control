@@ -1,0 +1,22 @@
+server:
+  port: 8083
+spring:
+  main:
+    web-application-type: reactive
+  profiles:
+    active: local
+  webflux:
+    base-path: /api/v1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+jwt:
+  secret: 0ddf5597e02d981f8803c4cc11f015a4e52679d706edb29b595d9e466def5bcf95273a3053ab5d97ee893c23e4023b912daefaade316406a33b7685d4d223dfa
+  expiration: 3600000
