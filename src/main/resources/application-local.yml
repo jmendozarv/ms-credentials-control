@@ -1,6 +1,6 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/store-market
+      uri: mongodb+srv://josephxdms:Lb4Z34TZxMgbdseJ@cluster0.91g3eue.mongodb.net/store-market?retryWrites=true&w=majority&appName=Cluster0
       field-creation:
         ignore-class: true
