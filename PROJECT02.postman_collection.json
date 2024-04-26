@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "c8ecaf7d-391d-4ce4-8bdd-f845c74593f9",
+		"name": "PROJECT02",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6279277"
+	},
+	"item": [
+		{
+			"name": "ms-product",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"LAPTOP LG\",\r\n    \"description\": \"LAPTOP GAMER\",\r\n    \"document_number\": \"47420248\",\r\n    \"state\": \"ACTIVE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/products/active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product by Id Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/products/66291f1cb31eaf657a01e3b9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"66291f1cb31eaf657a01e3b9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Optional Fields Product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"state\": \"ACTIVE\",\r\n    \"name\": \"LAPTOP SONY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/products/662c196746ba121f58b00eec",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"662c196746ba121f58b00eec"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"LAPTOP LG\",\r\n    \"description\": \"LAPTOP GAMER\",\r\n    \"document_number\": \"47420248\",\r\n    \"state\": \"ACTIVE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/products/66291f1cb31eaf657a01e3b8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"66291f1cb31eaf657a01e3b8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products Active By Customer Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/products/customer/{{mydocument}}?state={{state}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"products",
+								"customer",
+								"{{mydocument}}"
+							],
+							"query": [
+								{
+									"key": "state",
+									"value": "{{state}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ms-customer-products",
+			"item": [
+				{
+					"name": "Get All Products Active By Customer Id Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{myToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8084/api/v1/customer-products/customer/{{mydocument}}/active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"customer-products",
+								"customer",
+								"{{mydocument}}",
+								"active"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ms-credentials-control",
+			"item": [
+				{
+					"name": "Register Credential",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cluster_key\":\"CORE\",\r\n    \"user\": \"encora_2\",\r\n    \"password\": \"password_1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Obtiene la respuesta como un objeto JSON\r",
+									"const response = pm.response.json();\r",
+									"\r",
+									"// Extrae el valor del campo \"token\"\r",
+									"const token = response.token;\r",
+									"\r",
+									"// Almacena el token como una variable global\r",
+									"pm.globals.set(\"myToken\", token);\r",
+									"\r",
+									"// Verifica si el token se ha almacenado correctamente\r",
+									"pm.test(\"Token has been set globally\", function() {\r",
+									"    pm.expect(pm.globals.get(\"myToken\")).to.eql(token);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cluster_key\":\"CORE\",\r\n    \"user\": \"encora_1\",\r\n    \"password\": \"password_1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/v1/auth/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
